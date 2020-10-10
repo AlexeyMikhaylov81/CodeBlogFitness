@@ -30,6 +30,14 @@ namespace CodeBlogFitess.BL.Model
         /// </summary>
         public int Height { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="gender"></param>
+        /// <param name="birthDate"></param>
+        /// <param name="weight"></param>
+        /// <param name="height"></param>
         public User(string name, Gender gender, DateTime birthDate, double weight, int height)
         {
             if(string.IsNullOrWhiteSpace(name))
