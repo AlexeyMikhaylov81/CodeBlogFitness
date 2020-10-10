@@ -3,6 +3,10 @@
 
 namespace CodeBlogFitess.BL.Model
 {
+    #region
+    /// <summary>
+    /// Пользователь
+    /// </summary>
     class User
     {
         /// <summary>
@@ -29,21 +33,44 @@ namespace CodeBlogFitess.BL.Model
         /// Рост
         /// </summary>
         public int Height { get; set; }
+        #endregion
 
         /// <summary>
-        /// 
+        /// Создать нового пользователя
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="gender"></param>
-        /// <param name="birthDate"></param>
-        /// <param name="weight"></param>
-        /// <param name="height"></param>
+        /// <param name="name">Имя</param>
+        /// <param name="gender">Пол</param>
+        /// <param name="birthDate">Дата рождения</param>
+        /// <param name="weight">Рост</param>
+        /// <param name="height">Вес</param>        /// 
         public User(string name, Gender gender, DateTime birthDate, double weight, int height)
         {
-            if(string.IsNullOrWhiteSpace(name))
-            { 
+            #region Проверка условий
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Имя пользователя не может быть пустым.", nameof(name));
             }
 
+            if(gender == null)
+            {
+                throw new ArgumentNullException("Пол не может быть null", nameof(name));
+            }
+
+            if(birthDate < DateTime.Parse("01.01.1900") || birthDate >= DateTime.Now)
+            {
+                throw new ArgumentNullException("Невозможная дата рождения", nameof(birthDate));
+            }
+
+            if(weight <= 0)
+            {
+                throw new ArgumentNullException("Вес не может быть меньше или равен нулю", nameof(weight));
+            }
+
+            if(height <= 0)
+            {
+                throw new ArgumentNullException("Рост не может быть меньше или равен нулю", nameof(height));
+            }
+            #endregion
         }
 
     }
